@@ -1,7 +1,8 @@
-# Prisma Apollo Server Starter
+# Prisma Apollo Server Starter... with basic JWT token based username/password authentication
 
-This repository provides a starting point to work with apollo-server and prisma
+This repository provides a starting point to work with apollo-server and prisma.
 
+See https://www.prisma.io/tutorials/authentication-in-apollo-server-ct21 for authentication tutorial.
 
 ## Getting started
 
