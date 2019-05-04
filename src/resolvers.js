@@ -39,7 +39,7 @@ const resolvers = {
           id: user.id,
           username: user.email,
         },
-        'my-secret-from-env-file-in-prod',
+        process.env.JWT_SECRET,
         {
           expiresIn: '30d', // token will expire in 30days
         },

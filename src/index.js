@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const { ApolloServer } = require('apollo-server');
 const typeDefs = require('./typeDefs');
@@ -9,7 +10,7 @@ const { prisma } = require('./generated/prisma-client/index');
 const getUser = token => {
   try {
     if (token) {
-      return jwt.verify(token, 'my-secret-from-env-file-in-prod')
+      return jwt.verify(token, process.env.JWT_SECRET)
     }
     return null
   } catch (err) {
