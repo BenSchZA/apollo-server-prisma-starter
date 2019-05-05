@@ -1,20 +1,21 @@
-const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
+const jwt = require('jsonwebtoken');
 const { ApolloServer } = require('apollo-server');
-const typeDefs = require('./typeDefs');
 const resolvers = require('./resolvers');
+const { importSchema } = require('graphql-import');
+const typeDefs = importSchema('src/schema.graphql');
 
 const { prisma } = require('./generated/prisma-client/index');
 
 const getUser = token => {
   try {
     if (token) {
-      return jwt.verify(token, process.env.JWT_SECRET)
+      return jwt.verify(token, process.env.JWT_SECRET);
     }
-    return null
+    return null;
   } catch (err) {
-    return null
+    return null;
   }
 }
 
@@ -22,9 +23,9 @@ const server = new ApolloServer({
   typeDefs,
   resolvers,
   context: ({ req }) => {
-    const tokenWithBearer = req.headers.authorization || ''
-    const token = tokenWithBearer.split(' ')[1]
-    const user = getUser(token)
+    const tokenWithBearer = req.headers.authorization || '';
+    const token = tokenWithBearer.split(' ')[1];
+    const user = getUser(token);
 
     return {
       user,
